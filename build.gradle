@@ -272,8 +272,8 @@ dependencies {
     implementation('io.springfox:springfox-swagger-ui:2.9.2')
 
     // Zipkin
-    implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
-    implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
+//    implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
+//    implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
 
     // redis - session
 //    implementation('org.springframework.boot:spring-boot-starter-data-redis')
@@ -296,6 +296,8 @@ dependencies {
     implementation 'io.atlassian.fugue:fugue:3.0.0'
     implementation 'io.atlassian.util.concurrent:atlassian-util-concurrent:4.0.1'
 
+    // jira cloud
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     // poi
     implementation 'org.apache.poi:poi:5.1.0'

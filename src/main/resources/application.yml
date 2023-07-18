@@ -1,6 +1,6 @@
 spring:
   application:
-    name: javaServiceTreeFrameworkBakcendCore
+    name: javaServiceTreeFrameworkBackendCore
   mvc:
     async:
       request-timeout: 300
@@ -85,3 +85,9 @@ arms:
     baseurl: http://www.313.co.kr/jira
     id: admin
     pass: flexjava
+
+cloud:
+  jira:
+    baseurl: https://ssoohyun.atlassian.net
+    id: chltngus129@gmail.com
+    pass: ATATT3xFfGF0iYHE9OUSi1leaHfdmWJWhSDif6rMhXVe3vDFGtC4V8MS0XhHS9LTJE3kW-sLjO7FHn5HZwBcF_z0QefFOqPVDSoU6GECY3bcaHcI0mV2bfzjSBKGx1Jf6ER-Iy_6T4c-DlFd-bTgSgr8w2SId1lazy14juEgbc4YqVUVlJ47u9Y=9064FDAB

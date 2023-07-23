@@ -1,22 +1,17 @@
 package com.arms.jiracloud.issue.service;
 
 import com.arms.jiracloud.config.JiraCloudConfig;
+import com.arms.jiracloud.issue.model.JiraCloudIssueInputDTO;
 import com.egovframework.javaservice.treeframework.service.TreeServiceImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @AllArgsConstructor
 @Service("jiraCloudIssue")
@@ -54,44 +49,19 @@ public class JiraCloudIssueImpl extends TreeServiceImpl implements JiraCloudIssu
 
     @Override
     @Transactional
-    public String makeIssueForReqAdd() throws Exception {
+    public String makeIssueForReqAdd(JiraCloudIssueInputDTO jiraCloudIssueInputDTO) throws Exception {
 
         final WebClient jiraWebClient = jiraCloudConfig.getJiraWebClient();
 
         String endpoint = "/rest/api/2/issue";
 
-        // JSON data for create issue
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        Map<String, Object> jsonMap = new HashMap<>();
-        Map<String, Object> fieldsMap = new HashMap<>();
-        Map<String, Object> projectMap = new HashMap<>();
-        Map<String, Object> issueTypeMap = new HashMap<>();
-
-        projectMap.put("key", "TEST");
-        issueTypeMap.put("name", "Task");
-
-        fieldsMap.put("project", projectMap);
-        fieldsMap.put("issuetype", issueTypeMap);
-        fieldsMap.put("summary", "이슈 생성 테스트");
-        fieldsMap.put("description", "이슈 상세 내용입니다!");
-
-        jsonMap.put("fields", fieldsMap);
-
-        String json = objectMapper.writeValueAsString(jsonMap);
-
         // create an issue
-        Mono<String> responseMono = jiraWebClient.post()
+        JiraCloudIssueInputDTO addJiraCloudIssue = jiraWebClient.post()
                 .uri(endpoint)
-                .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                .bodyValue(json)
+                .bodyValue(jiraCloudIssueInputDTO)
                 .retrieve()
-                .bodyToMono(String.class);
-
-        responseMono.subscribe(
-                response -> logger.info("Response: {}", response),
-                error -> logger.error("Failed to create an issue: {}",  error.getMessage())
-        );
+                .bodyToMono(JiraCloudIssueInputDTO.class)
+                .block();
 
         return "Jira Cloud Issue Data Create Complete";
     }

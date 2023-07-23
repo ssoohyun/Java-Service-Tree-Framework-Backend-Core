@@ -1,5 +1,6 @@
 package com.arms.jiracloud.issue.controller;
 
+import com.arms.jiracloud.issue.model.JiraCloudIssueInputDTO;
 import com.arms.jiracloud.issue.service.JiraCloudIssue;
 import com.arms.jiraissue.model.JiraIssueDTO;
 import com.arms.jiraissue.model.JiraIssueEntity;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,8 +53,9 @@ public class JiraCloudIssueController extends TreeAbstractController<JiraCloudIs
             value = {"/makeIssueForReqAdd.do"},
             method = {RequestMethod.POST}
     )
-    public ResponseEntity<?> makeIssueForReqAdd(ModelMap model, HttpServletRequest request) throws Exception {
-        return ResponseEntity.ok(CommonResponse.success(jiraCloudIssue.makeIssueForReqAdd()));
+    public ResponseEntity<?> makeIssueForReqAdd(@RequestBody JiraCloudIssueInputDTO jiraCloudIssueInputDTO,
+                                                ModelMap model, HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(CommonResponse.success(jiraCloudIssue.makeIssueForReqAdd(jiraCloudIssueInputDTO)));
     }
 
 }

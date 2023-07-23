@@ -1,8 +1,8 @@
-package com.arms.jiracloud.controller;
+package com.arms.jiracloud.project.controller;
 
-import com.arms.jiracloud.model.JiraCloudProjectDTO;
-import com.arms.jiracloud.service.JiraCloudProject;
-import com.arms.jiraproject.model.JiraProjectEntity;
+import com.arms.jiracloud.project.model.JiraCloudProjectDTO;
+import com.arms.jiracloud.project.model.JiraCloudProjectEntity;
+import com.arms.jiracloud.project.service.JiraCloudProject;
 import com.egovframework.javaservice.treeframework.controller.CommonResponse;
 import com.egovframework.javaservice.treeframework.controller.TreeAbstractController;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @Controller
 @RequestMapping(value = {"/arms/jiraCloudProject"})
-public class JiraCloudProjectController extends TreeAbstractController<JiraCloudProject, JiraCloudProjectDTO, JiraProjectEntity> {
+public class JiraCloudProjectController extends TreeAbstractController<JiraCloudProject, JiraCloudProjectDTO, JiraCloudProjectEntity> {
 
     @Autowired
     @Qualifier("jiraCloudProject")
@@ -32,7 +32,7 @@ public class JiraCloudProjectController extends TreeAbstractController<JiraCloud
     @PostConstruct
     public void initialize() {
         setTreeService(jiraCloudProject);
-        setTreeEntity(JiraProjectEntity.class);
+        setTreeEntity(JiraCloudProjectEntity.class);
     }
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

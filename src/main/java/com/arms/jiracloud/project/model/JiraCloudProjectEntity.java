@@ -9,7 +9,7 @@
  *  Written by 313 developer group <313@313.co.kr>, December 2010
  * </pre>
  */
-package com.arms.jiracloud.model;
+package com.arms.jiracloud.project.model;
 
 import com.arms.jiraprojectversion.model.JiraProjectVersionEntity;
 import com.egovframework.javaservice.treeframework.model.TreeBaseEntity;

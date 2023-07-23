@@ -1,4 +1,4 @@
-package com.arms.jiracloud.model;
+package com.arms.jiracloud.project.model;
 
 import com.egovframework.javaservice.treeframework.model.TreeBaseDTO;
 import lombok.*;

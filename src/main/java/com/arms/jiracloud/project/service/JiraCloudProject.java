@@ -1,4 +1,4 @@
-package com.arms.jiracloud.service;
+package com.arms.jiracloud.project.service;
 
 import com.egovframework.javaservice.treeframework.service.TreeService;
 
